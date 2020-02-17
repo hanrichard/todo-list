@@ -1,7 +1,11 @@
 import React from 'react';
 
-const TodoItem = ({ text }) => {
-    return <div className="">{text}</div>;
+const TodoItem = ({ text, id, onDelete }) => {
+    return (
+        <li className="" onClick={e => onDelete(id)} id={id}>
+            {text}
+        </li>
+    );
 };
 
 export default TodoItem;

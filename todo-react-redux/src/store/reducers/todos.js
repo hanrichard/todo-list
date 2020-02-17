@@ -16,7 +16,8 @@ const todos = (state = initialState, action) => {
                     text: action.text,
                 },
             ];
-
+        case actionTypes.DELETE_TODO:
+            return state.filter(item => item.id !== action.id);
         default:
             return state;
     }
