@@ -8,7 +8,7 @@ const TodoList = ({ todos, deleteTodo }) => {
     const showTodoList =
         todos &&
         todos.map(todo => {
-            return <TodoItem key={todo.id} id={todo.id} onDelete={deleteTodo} text={todo.text} />;
+            return <TodoItem key={todo.id} id={todo.id} deleteTodo={deleteTodo} text={todo.text} />;
         });
     return (
         <div className="App">
