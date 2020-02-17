@@ -4,7 +4,6 @@ import TodoItem from './TodoItem';
 import { deleteTodo } from '../store/actions/index';
 
 const TodoList = ({ todos, deleteTodo }) => {
-    console.log(todos);
     const showTodoList =
         todos &&
         todos.map(todo => {
