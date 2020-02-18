@@ -1,17 +1,28 @@
 import React, { useState, useReducer } from 'react';
+import { uuid } from 'uuidv4';
 
 import TodoContext from './todo-context';
+import { todosReducer, ADD_TODO, DELETE_TODO } from '../context/reducers';
 
 const GlobalState = props => {
-    const todos = [
-        { id: 'p1', text: 'text 1' },
-        { id: 'p2', text: 'text 2' },
+    const initialState = [
+        { id: uuid(), text: 'test 1' },
+        { id: uuid(), text: 'test 2' },
     ];
+    const [todosState, dispatch] = useReducer(todosReducer, initialState);
 
+    const addTodo = text => {
+        dispatch({ type: ADD_TODO, text: text });
+    };
+    const deleteTodo = todoId => {
+        dispatch({ type: DELETE_TODO, todoId: todoId });
+    };
     return (
         <TodoContext.Provider
             value={{
-                todos: todos,
+                todos: todosState,
+                addTodo: addTodo,
+                deleteTodo: deleteTodo,
             }}
         >
             {props.children}

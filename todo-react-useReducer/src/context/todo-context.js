@@ -6,4 +6,6 @@ export default React.createContext({
         { id: uuid(), text: 'text 1' },
         { id: uuid(), text: 'text 2' },
     ],
+    addTodo: todo => {},
+    deleteTodo: todoId => {},
 });

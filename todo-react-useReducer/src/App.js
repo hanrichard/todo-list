@@ -7,9 +7,11 @@ import './App.css';
 
 const App = () => {
     return (
-        <GlobalState>
-            <TodoList /> <TodoForm />
-        </GlobalState>
+        <div className="App">
+            <GlobalState>
+                <TodoList /> <TodoForm />
+            </GlobalState>
+        </div>
     );
 };
 

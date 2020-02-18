@@ -1,22 +1,50 @@
 import React from 'react';
-const TodoForm = ({ dispatch }) => {
+import TodoContext from '../context/todo-context';
+
+const TodoForm = props => {
     let input;
     return (
-        <div>
-            <form
-                onSubmit={e => {
-                    e.preventDefault();
-                    if (!input.value.trim()) {
-                        return;
-                    }
-                    // dispatch(addTodo(input.value));
-                    input.value = '';
-                }}
-            >
-                <input ref={node => (input = node)} />
-                <button type="submit">Add Todo</button>
-            </form>
-        </div>
+        <TodoContext.Consumer>
+            {context => (
+                <form
+                    onSubmit={e => {
+                        e.preventDefault();
+                        if (!input.value.trim()) {
+                            return;
+                        }
+                        // dispatch(addTodo(input.value));
+                        context.addTodo(input.value);
+                        input.value = '';
+                    }}
+                >
+                    <input ref={node => (input = node)} />
+                    <button type="submit">Add Todo</button>
+                </form>
+            )}
+        </TodoContext.Consumer>
     );
 };
 export default TodoForm;
+
+// const TodoForm = ({ dispatch }) => {
+//     let input;
+//     return (
+//         <div>
+// <form
+//     onSubmit={e => {
+//         e.preventDefault();
+//         if (!input.value.trim()) {
+//             return;
+//         }
+//         // dispatch(addTodo(input.value));
+//         context.addtodo.bind(this, input.value);
+//         input.value = '';
+//     }}
+// >
+//     <input ref={node => (input = node)} />
+//     <button type="submit">Add Todo</button>
+// </form>
+//         </div>
+//     );
+// };
+// export default TodoForm;
