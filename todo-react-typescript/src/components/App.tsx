@@ -4,14 +4,19 @@ import { uuid } from 'uuidv4';
 import TodoList from '../components/TodoList';
 import TodoForm from '../components/TodoForm';
 
+interface TodoInterface {
+    id: string;
+    text: string;
+}
+
 const App = () => {
     const initialState = [
         { id: uuid(), text: 'test 1' },
         { id: uuid(), text: 'test 2' },
     ];
 
-    // const [todos, setTodos] = useState(initialState);
-
+    const [todos, setTodos] = React.useState<TodoInterface[]>([]);
+    // setTodos(initialState);
     // const deleteTodo = (todos, id) => {
     //     setTodos(todos.filter(item => item.id !== id));
     // };
