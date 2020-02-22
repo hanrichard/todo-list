@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 const TodoForm = ({ addTodo }) => {
-    let input;
+    const [value, setValue] = useState('');
+
     return (
         <div>
             <form
                 onSubmit={e => {
                     e.preventDefault();
-                    if (!input.value.trim()) {
+                    if (value.trim() === '') {
                         return;
                     }
-                    addTodo(input.value);
-                    input.value = '';
+                    addTodo(value);
+                    setValue('');
                 }}
             >
-                <input ref={node => (input = node)} />
+                <input
+                    onChange={event => {
+                        setValue(event.target.value);
+                    }}
+                    value={value}
+                />
                 <button type="submit">Add Todo</button>
             </form>
         </div>

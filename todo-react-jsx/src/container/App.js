@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { uuid } from 'uuidv4';
 import TodoList from '../components/TodoList';
@@ -10,17 +10,19 @@ const App = () => {
         { id: uuid(), text: 'test 2' },
     ];
 
+    const [todos, setTodos] = useState(initialState);
+
     const deleteTodo = id => {
-        console.log(id);
+        setTodos(todos.filter(item => item.id !== id));
     };
 
     const addTodo = todo => {
-        console.log(todo);
+        setTodos([...todos, { id: uuid(), text: todo }]);
     };
 
     return (
         <div className="App">
-            <TodoList todos={initialState} deleteTodo={deleteTodo} />
+            <TodoList todos={todos} deleteTodo={deleteTodo} />
             <TodoForm addTodo={addTodo} />
         </div>
     );

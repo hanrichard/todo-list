@@ -2,6 +2,7 @@ import React from 'react';
 import TodoItem from './TodoItem';
 
 const TodoList = ({ todos, deleteTodo }) => {
+    console.log(todos);
     const showTodoList =
         todos &&
         todos.map(todo => {
