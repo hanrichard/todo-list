@@ -12,7 +12,7 @@ const App = () => {
 
     const [todos, setTodos] = useState(initialState);
 
-    const deleteTodo = id => {
+    const deleteTodo = (todos, id) => {
         setTodos(todos.filter(item => item.id !== id));
     };
 
