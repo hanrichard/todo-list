@@ -6,8 +6,8 @@ import TodoForm from '../components/TodoForm';
 import { Todo } from '../components/types';
 
 const initialTodos: Array<Todo> = [
-    { id: uuid(), text: 'test 1' },
-    { id: uuid(), text: 'test 2' },
+    { id: uuid(), text: 'test 1', complete: false },
+    { id: uuid(), text: 'test 2', complete: false },
 ];
 
 const App: React.FunctionComponent = () => {
@@ -18,12 +18,25 @@ const App: React.FunctionComponent = () => {
     };
 
     const addTodo = (text: string) => {
-        setTodos([...todos, { id: uuid(), text: text }]);
+        setTodos([...todos, { id: uuid(), text: text, complete: false }]);
+    };
+
+    const toggleTodo = (selectedTodo: Todo) => {
+        const newTodos = todos.map(todo => {
+            if (selectedTodo === todo) {
+                return {
+                    ...todo,
+                    complete: !todo.complete,
+                };
+            }
+            return todo;
+        });
+        setTodos(newTodos);
     };
 
     return (
         <div className="App">
-            <TodoList todos={todos} deleteTodo={deleteTodo} />
+            <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
             <TodoForm addTodo={addTodo} />
         </div>
     );
