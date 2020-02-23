@@ -15,8 +15,14 @@ interface TodoProps {
     };
     deleteTodo: (id: string) => void;
 }
-const TodoItem: React.FunctionComponent<TodoProps> = ({ todo, deleteTodo }) => {
-    return <div onClick={() => deleteTodo(todo.id)}>{todo.text}</div>;
+
+const TodoItem: React.FunctionComponent<TodoProps> = ({ todo: { id, text }, deleteTodo }) => {
+    return (
+        <li className="" id={id}>
+            {text}
+            <button onClick={e => deleteTodo(id)}>X</button>
+        </li>
+    );
 };
 
 export default TodoItem;
