@@ -1,32 +1,35 @@
 import React, { useState } from 'react';
 
-const TodoForm = () => {
-    return <div>123</div>;
-};
-// const TodoForm = ({ addTodo }) => {
-//     const [value, setValue] = useState('');
+interface AddTodoProps {
+    addTodo: (text: string) => void;
+}
 
-//     return (
-//         <div>
-//             <form
-//                 onSubmit={e => {
-//                     e.preventDefault();
-//                     if (value.trim() === '') {
-//                         return;
-//                     }
-//                     addTodo(value);
-//                     setValue('');
-//                 }}
-//             >
-//                 <input
-//                     onChange={event => {
-//                         setValue(event.target.value);
-//                     }}
-//                     value={value}
-//                 />
-//                 <button type="submit">Add Todo</button>
-//             </form>
-//         </div>
-//     );
-// };
+const TodoForm: React.FunctionComponent<AddTodoProps> = ({ addTodo }) => {
+    const [value, setValue] = useState<string>('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+    };
+
+    const handSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        if (value.trim() === '') {
+            return;
+        }
+        addTodo(value);
+        setValue('');
+    };
+
+    return (
+        <div>
+            <form>
+                <input onChange={handleChange} value={value} />
+                <button type="submit" onClick={handSubmit}>
+                    Add Todo
+                </button>
+            </form>
+        </div>
+    );
+};
+
 export default TodoForm;

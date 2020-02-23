@@ -4,33 +4,33 @@ import { uuid } from 'uuidv4';
 import TodoList from '../components/TodoList';
 import TodoForm from '../components/TodoForm';
 
-interface TodoInterface {
-    id: string;
+type Todo = {
     text: string;
-}
+    id: string;
+};
 
-const App = () => {
-    const initialState = [
-        { id: uuid(), text: 'test 1' },
-        { id: uuid(), text: 'test 2' },
-    ];
+const initialTodos: Array<Todo> = [
+    { id: uuid(), text: 'test 1' },
+    { id: uuid(), text: 'test 2' },
+];
 
-    const [todos, setTodos] = React.useState<TodoInterface[]>([]);
-    // setTodos(initialState);
-    // const deleteTodo = (todos, id) => {
-    //     setTodos(todos.filter(item => item.id !== id));
-    // };
+const App: React.FunctionComponent = () => {
+    const [todos, setTodos] = useState(initialTodos);
 
-    // const addTodo = todo:any => {
-    //     setTodos([...todos, { id: uuid(), text: todo }]);
-    // };
+    const deleteTodo = (id: string) => {
+        console.log(id);
+        setTodos(todos.filter(item => item.id !== id));
+    };
+
+    const addTodo = (text: string) => {
+        console.log(text);
+        setTodos([...todos, { id: uuid(), text: text }]);
+    };
 
     return (
         <div className="App">
-            {/* <TodoList todos={todos} deleteTodo={deleteTodo} />
-            <TodoForm addTodo={addTodo} /> */}
-            <TodoList />
-            <TodoForm />
+            <TodoList todos={todos} deleteTodo={deleteTodo} />
+            <TodoForm addTodo={addTodo} />
         </div>
     );
 };
