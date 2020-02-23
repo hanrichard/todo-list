@@ -7,13 +7,11 @@
 // //             <button onClick={e => deleteTodo(id)}>X</button>
 // //         </li>
 import React from 'react';
+import { Todo, deleteTodo } from '../components/types';
 
 interface TodoProps {
-    todo: {
-        text: string;
-        id: string;
-    };
-    deleteTodo: (id: string) => void;
+    todo: Todo;
+    deleteTodo: deleteTodo;
 }
 
 const TodoItem: React.FunctionComponent<TodoProps> = ({ todo: { id, text }, deleteTodo }) => {

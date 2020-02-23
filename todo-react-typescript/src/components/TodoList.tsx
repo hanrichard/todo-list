@@ -1,14 +1,10 @@
 import React from 'react';
 import TodoItem from './TodoItem';
-
-type Todo = {
-    text: string;
-    id: string;
-};
+import { Todo, deleteTodo } from '../components/types';
 
 interface TodoListProps {
     todos: Array<Todo>;
-    deleteTodo: (id: string) => void;
+    deleteTodo: deleteTodo;
 }
 
 const TodoList: React.FunctionComponent<TodoListProps> = ({ todos, deleteTodo }) => {

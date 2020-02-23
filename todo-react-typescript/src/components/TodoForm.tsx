@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { addTodo } from '../components/types';
 
 interface AddTodoProps {
-    addTodo: (text: string) => void;
+    addTodo: addTodo;
 }
 
 const TodoForm: React.FunctionComponent<AddTodoProps> = ({ addTodo }) => {

@@ -3,11 +3,7 @@ import './App.css';
 import { uuid } from 'uuidv4';
 import TodoList from '../components/TodoList';
 import TodoForm from '../components/TodoForm';
-
-type Todo = {
-    text: string;
-    id: string;
-};
+import { Todo } from '../components/types';
 
 const initialTodos: Array<Todo> = [
     { id: uuid(), text: 'test 1' },
