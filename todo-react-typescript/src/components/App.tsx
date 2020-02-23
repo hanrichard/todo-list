@@ -14,12 +14,10 @@ const App: React.FunctionComponent = () => {
     const [todos, setTodos] = useState(initialTodos);
 
     const deleteTodo = (id: string) => {
-        console.log(id);
         setTodos(todos.filter(item => item.id !== id));
     };
 
     const addTodo = (text: string) => {
-        console.log(text);
         setTodos([...todos, { id: uuid(), text: text }]);
     };
 
