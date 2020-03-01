@@ -1,21 +1,22 @@
 import { takeEvery, put } from 'redux-saga/effects';
 
-// import { GET_INIT_LIST } from '../store/actions/actionTypes';
+import { SAGA_ACTION } from '../store/actions/actionTypes';
 
-// import { getInitDataAction } from '../store/actions';
+function* getInitListData() {
+    try {
+        const action = setTimeout(() => {
+            console.log('this is saga');
+        }, 1000);
+        yield put(action);
+    } catch (error) {
+        console.log('error: ', error);
+    }
+}
 
-import axios from 'axios';
-
-// function* getInitListData() {
-//     try {
-//         const res = yield axios.get('/test.json');
-//         const action = getInitDataAction(res.data.data);
-//         yield put(action);
-//     } catch (error) {
-//         console.log('error: ', error);
-//     }
-// }
-
-function* mySaga() {}
+function* mySaga() {
+    console.log('saga');
+    // yield put(getInitListData);
+    yield takeEvery(SAGA_ACTION, getInitListData);
+}
 
 export default mySaga;

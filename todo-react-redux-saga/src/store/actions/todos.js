@@ -14,3 +14,7 @@ export const toggleTodo = todo => ({
     type: actionTypes.TOGGLE_TODO,
     todo,
 });
+
+export const sagaAction = () => ({
+    type: actionTypes.SAGA_ACTION,
+});

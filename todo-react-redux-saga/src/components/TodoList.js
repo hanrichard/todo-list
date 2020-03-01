@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TodoItem from './TodoItem';
-import { deleteTodo, toggleTodo } from '../store/actions/index';
+import { deleteTodo, toggleTodo, sagaAction } from '../store/actions/index';
 
 const TodoList = ({ todos, deleteTodo, toggleTodo }) => {
     const showTodoList =
@@ -25,6 +25,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     deleteTodo: id => dispatch(deleteTodo(id)),
     toggleTodo: todo => dispatch(toggleTodo(todo)),
+    sagaAction: () => dispatch(sagaAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
