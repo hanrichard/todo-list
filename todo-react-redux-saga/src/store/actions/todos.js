@@ -15,6 +15,11 @@ export const toggleTodo = todo => ({
     todo,
 });
 
-export const sagaAction = () => ({
-    type: actionTypes.SAGA_ACTION,
+export const requestApiData = () => ({
+    type: actionTypes.REQUEST_API_DATA,
+});
+
+export const receiveApiData = data => ({
+    type: actionTypes.RECEIVE_API_DATA,
+    data,
 });

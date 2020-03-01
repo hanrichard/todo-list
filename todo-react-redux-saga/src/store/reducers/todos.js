@@ -8,6 +8,8 @@ const initialState = [
 
 const todos = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.RECEIVE_API_DATA:
+            return [...state, action.data];
         case actionTypes.ADD_TODO:
             return [
                 ...state,

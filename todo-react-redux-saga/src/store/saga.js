@@ -1,22 +1,33 @@
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 
-import { SAGA_ACTION } from '../store/actions/actionTypes';
+import { REQUEST_API_DATA } from '../store/actions/actionTypes';
 
-function* getInitListData() {
+import { receiveApiData } from '../store/actions/index';
+
+const fetchData = async () => {
     try {
-        const action = setTimeout(() => {
-            console.log('this is saga');
-        }, 1000);
-        yield put(action);
-    } catch (error) {
-        console.log('error: ', error);
+        const response = await fetch('https://randomuser.me/api');
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+function* getApiData(action) {
+    try {
+        // do api call
+        const data = yield call(fetchData);
+        console.log(data);
+        yield put(receiveApiData(data));
+    } catch (e) {
+        console.log(e);
     }
 }
 
 function* mySaga() {
-    console.log('saga');
-    // yield put(getInitListData);
-    yield takeEvery(SAGA_ACTION, getInitListData);
+    yield takeEvery(REQUEST_API_DATA, getApiData);
 }
 
 export default mySaga;
