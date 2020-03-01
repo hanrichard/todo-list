@@ -2,20 +2,20 @@ import { uuid } from 'uuidv4';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = [
-    { id: uuid(), text: 'test 1', complete: false },
-    { id: uuid(), text: 'test 2', complete: false },
+    { id: uuid(), title: 'test 1', complete: false },
+    { id: uuid(), title: 'test 2', complete: false },
 ];
 
 const todos = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.RECEIVE_API_DATA:
-            return [...state, action.data];
+            return [...state.concat(action.data)];
         case actionTypes.ADD_TODO:
             return [
                 ...state,
                 {
                     id: uuid(),
-                    text: action.text,
+                    title: action.title,
                     complete: false,
                 },
             ];

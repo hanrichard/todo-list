@@ -1,8 +1,8 @@
 import * as actionTypes from './actionTypes';
 
-export const addTodo = text => ({
+export const addTodo = title => ({
     type: actionTypes.ADD_TODO,
-    text,
+    title,
 });
 
 export const deleteTodo = id => ({
