@@ -1,4 +1,4 @@
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { all, fork, takeEvery, put, call } from 'redux-saga/effects';
 import { REQUEST_API_DATA } from '../store/actions/actionTypes';
 import { receiveApiData } from '../store/actions/index';
 
@@ -25,4 +25,13 @@ function* mySaga() {
     yield takeEvery(REQUEST_API_DATA, getApiData);
 }
 
-export default mySaga;
+export default function* rootSaga() {
+    yield all([fork(mySaga)]);
+}
+
+// import * as userSaga from './user';
+// import * as userAccountSaga from './userAccount';
+
+// export default function* rootSaga() {
+//     yield all([...Object.values(userSaga), ...Object.values(userAccountSaga)].map(fork));
+// }
