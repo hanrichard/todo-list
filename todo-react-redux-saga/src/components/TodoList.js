@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TodoItem from './TodoItem';
 import { deleteTodo, toggleTodo, requestApiData } from '../store/actions/index';
 
-const TodoList = ({ todos, requestApiData, toggleTodo }) => {
+const TodoList = ({ todos, requestApiData, toggleTodo, deleteTodo }) => {
     useEffect(() => {
         requestApiData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
