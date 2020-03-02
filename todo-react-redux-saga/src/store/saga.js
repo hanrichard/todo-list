@@ -1,7 +1,5 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-
 import { REQUEST_API_DATA } from '../store/actions/actionTypes';
-
 import { receiveApiData } from '../store/actions/index';
 
 const fetchData = async () => {
