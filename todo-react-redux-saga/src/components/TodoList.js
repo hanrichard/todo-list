@@ -1,34 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import TodoItem from './TodoItem';
 import { deleteTodo, toggleTodo, requestApiData } from '../store/actions/index';
 
-class TodoList extends React.Component {
-    componentDidMount() {
-        this.props.requestApiData();
-    }
+const TodoList = ({ todos, requestApiData }) => {
+    useEffect(() => {
+        requestApiData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    render() {
-        console.log(this.props.todos);
-        const showTodoList =
-            this.props.todos &&
-            this.props.todos.map(todo => {
-                return (
-                    <TodoItem
-                        key={todo.id}
-                        deleteTodo={this.props.deleteTodo}
-                        toggleTodo={this.props.toggleTodo}
-                        todo={todo}
-                    />
-                );
-            });
-        return (
-            <div className="App">
-                <ul>{showTodoList}</ul>
-            </div>
-        );
-    }
-}
+    const showTodoList =
+        todos &&
+        todos.map(todo => {
+            return <TodoItem key={todo.id} deleteTodo={deleteTodo} toggleTodo={toggleTodo} todo={todo} />;
+        });
+    return (
+        <div className="App">
+            <ul>{showTodoList}</ul>
+        </div>
+    );
+};
 
 const mapStateToProps = state => {
     return {
