@@ -2,13 +2,14 @@ import { uuid } from 'uuidv4';
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = [
-    { id: uuid(), title: 'test 1', complete: false },
-    { id: uuid(), title: 'test 2', complete: false },
+    { id: uuid(), title: 'test 1', completed: false },
+    { id: uuid(), title: 'test 2', completed: false },
 ];
 
 const todos = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.RECEIVE_API_DATA:
+            console.log(...state.concat(action.data));
             return [...state.concat(action.data)];
         case actionTypes.ADD_TODO:
             return [
@@ -16,7 +17,7 @@ const todos = (state = initialState, action) => {
                 {
                     id: uuid(),
                     title: action.title,
-                    complete: false,
+                    completed: false,
                 },
             ];
         case actionTypes.DELETE_TODO:
@@ -26,7 +27,7 @@ const todos = (state = initialState, action) => {
                 if (action.todo === todo) {
                     return {
                         ...todo,
-                        complete: !todo.complete,
+                        completed: !todo.completed,
                     };
                 }
                 return todo;
