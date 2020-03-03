@@ -9,7 +9,6 @@ const initialState = [
 const todos = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.RECEIVE_API_DATA:
-            console.log(...state.concat(action.data));
             return [...state.concat(action.data)];
         case actionTypes.ADD_TODO:
             return [
