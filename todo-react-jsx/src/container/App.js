@@ -20,9 +20,13 @@ const App = () => {
         setTodos([...todos, { id: uuid(), text: todo }]);
     };
 
+    const onDragStart = e => {
+        console.log(e);
+    };
+
     return (
         <div className="App">
-            <TodoList todos={todos} deleteTodo={deleteTodo} />
+            <TodoList todos={todos} deleteTodo={deleteTodo} onDragStart={onDragStart} />
             <TodoForm addTodo={addTodo} />
         </div>
     );
