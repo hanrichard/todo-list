@@ -17,6 +17,8 @@ const GlobalState = props => {
     const deleteTodo = todoId => {
         dispatch({ type: DELETE_TODO, todoId: todoId });
     };
+
+    console.log(todosState);
     return (
         <TodoContext.Provider
             value={{
