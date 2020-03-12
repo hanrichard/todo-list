@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import TodoItem from './TodoItem';
 import { deleteTodo, toggleTodo } from '../store/actions/index';
 
-const TodoList = ({ todos, deleteTodo, toggleTodo }) => {
+const TodoList = ({ deleteTodo, toggleTodo }) => {
+    const todos = useSelector(state => state.todos);
     const showTodoList =
         todos &&
         todos.map(todo => {
@@ -16,15 +17,9 @@ const TodoList = ({ todos, deleteTodo, toggleTodo }) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        todos: state.todos,
-    };
-};
-
 const mapDispatchToProps = dispatch => ({
     deleteTodo: id => dispatch(deleteTodo(id)),
     toggleTodo: todo => dispatch(toggleTodo(todo)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(null, mapDispatchToProps)(TodoList);
