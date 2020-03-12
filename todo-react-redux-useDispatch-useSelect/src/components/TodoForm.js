@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
-
 import { addTodo } from '../store/actions/index';
 
 const TodoForm = () => {
