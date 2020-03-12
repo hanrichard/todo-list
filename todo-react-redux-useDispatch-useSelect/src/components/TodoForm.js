@@ -1,24 +1,29 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { addTodo } from '../store/actions';
-const TodoForm = ({ dispatch }) => {
-    let input;
+import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+
+import { addTodo } from '../store/actions/index';
+
+const TodoForm = () => {
+    const [value, setValue] = useState('');
+    const dispatch = useDispatch();
+    const handleAddTodo = e => {
+        e.preventDefault();
+        dispatch(addTodo(value));
+        setValue('');
+    };
+
     return (
         <div>
-            <form
-                onSubmit={e => {
-                    e.preventDefault();
-                    if (!input.value.trim()) {
-                        return;
-                    }
-                    dispatch(addTodo(input.value));
-                    input.value = '';
-                }}
-            >
-                <input ref={node => (input = node)} />
+            <form onSubmit={handleAddTodo}>
+                <input
+                    onChange={event => {
+                        setValue(event.target.value);
+                    }}
+                    value={value}
+                />
                 <button type="submit">Add Todo</button>
             </form>
         </div>
     );
 };
-export default connect()(TodoForm);
+export default TodoForm;
